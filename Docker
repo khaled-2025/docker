@@ -1,0 +1,16 @@
+
+difference Between RUN & CMD & ENTRYPOINT ?
+
+1. RUN -> instruction allows you to install your application and packages required for it. It executes any commands on top of the current image and creates a new layer by committing the results. Often you will find multiple RUN instructions in a Dockerfile.
+
+- RUN Command: RUN command will basically, execute the default command, when we are building the image. It also will commit the image changes for next step.
+
+There can be more than 1 RUN command, to aid in process of building a new image.
+
+2. CMD Command: will just set the default command for the new container. This will not be executed at build time.
+
+If a docker file has more than 1 CMD commands then all of them are ignored except the last one. As this command will not execute anything but just set the default command.
+
+3. The ENTRYPOINT instruction:
+
+looks almost similar to the CMD instruction. However, the main highlighting difference between them is that it will not ignore any of the parameters that you have specified in the Docker run command (CLI parameters).
