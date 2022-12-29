@@ -1,5 +1,5 @@
 
-difference Between RUN & CMD & ENTRYPOINT ?
+1. difference Between RUN & CMD & ENTRYPOINT ?
 
 1. RUN -> instruction allows you to install your application and packages required for it. It executes any commands on top of the current image and creates a new layer by committing the results. Often you will find multiple RUN instructions in a Dockerfile.
 
@@ -14,3 +14,18 @@ If a docker file has more than 1 CMD commands then all of them are ignored excep
 3. The ENTRYPOINT instruction:
 
 looks almost similar to the CMD instruction. However, the main highlighting difference between them is that it will not ignore any of the parameters that you have specified in the Docker run command (CLI parameters).
+##########################################
+2. Docker ARG Vs ENV?
+
+- The ARG "arguments" are only available when building the image, while ENV parameters are available to the application containers during build and when the container is running
+
+- The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag.
+
+- The ENV instruction sets the environment variable <key> to the value <value>.
+The environment variables set using ENV will persist when a container is run from the resulting image.
+
+- So if you need build-time customization, ARG is your best choice.
+If you need run-time customization (to run the same image with different settings), ENV is well-suited.
+##########################################
+
+
