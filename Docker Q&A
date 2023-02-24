@@ -26,6 +26,5 @@ The environment variables set using ENV will persist when a container is run fro
 
 - So if you need build-time customization, ARG is your best choice.
 If you need run-time customization (to run the same image with different settings), ENV is well-suited.
-##########################################
-
+#########################################
 
