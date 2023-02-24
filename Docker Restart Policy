@@ -1,0 +1,20 @@
+
+
+Use a restart policy:
+
+To configure the restart policy for a container,use the --restart flag when using the docker run command.
+The value of the --restart flag can be any of the following:
+
+1. no: Do not automatically restart the container. (the default)
+
+2. on-failure[:max-retries] : Restart the container if it exits due to an error, which manifests as a non-zero exit code. 
+but won't restart if you manually stopped it. however will restart if the docker daemon restarts
+Optionally, limit the number of times the Docker daemon attempts to restart the container using the :max-retries option.
+
+3. always: 
+- the container will always restart if the main process is killed from inside the container. but won't restart if manually stopped.
+- will estart if the docker daemon restarts.
+
+4. unless-stopped:
+
+- Similar to always, except that when the container is stopped (manually or otherwise), it is not restarted even after Docker daemon restarts.
