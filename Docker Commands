@@ -1,0 +1,3 @@
+
+$ sudo docker ls -q => to list all docker image IDs 
+$ sudo docker rm $(docker image ls -q) => to delete all images by image ID from a single command
