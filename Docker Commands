@@ -1,7 +1,10 @@
 
+
+$ docker run -it --name devtest --mount type=bind,source="$(pwd)",target=/app centos:latest => to create/run a new docker container with bind mount, hence anything will be written in the docker host will be reflected into docker container  
 $ sudo docker ls -q => to list all docker image IDs 
 $ sudo docker rm $(docker image ls -q) => to delete all images by image ID from a single command
 $ docker run -it ngnix:latest --name webserver -h DevOps /bin/bash => to create & run & start a writeable container layer over the specified image "ngnix:latest" if exists if not will pull ngnix image, -- name flag to rename your container -h to rename the host inside the container /bin/bash to use default linux shell
+$ docker run -it --name "DevOps" centos:latest bash => to create a new docker container from centos image
 $ docker attach webserver => to attach/use your dockre container "webserver" terminal interactively
 $ docker network create mynet => to create a new network named mynet "by default will be bridge network", also u can use --network flag to create the network whenever excute $docker run command.
 $ docker network create --subnet 10.0.0.0/16 mynet => to create a network within a specified IP Address Range
