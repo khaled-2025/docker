@@ -1,8 +1,19 @@
+Advanced Docker Commands:
 
 # mount bind commands:
 
+# there're two types of mounting in docker (bind mount & volume)
+
+1. here's how to create a bind mount: 
+
 $ docker run -it --name devtest --mount type=bind,source="$(pwd)",target=/app centos:latest => to create/run a new docker container with bind mount, hence anything will be written in the docker host will be reflected into docker container  
 $ docker run -it --name devtest -h DevTest -v "$(pwd)":/app centos:latest bash => can do the same bind mounting
+-----------------------------------------
+2. here's how to create a volume mounting "persistent storage"
+
+$ docker volume create myvol => to Creates a new volume that containers can consume & store data in, and this is the volume/storage path /var/lib/docker/volume "persistent storage location"
+$ docker run -it --name DevTest -h DevTest -v myvol:/app centos:latest bash => to create/run a new docker container with "Volume mount",
+anything will be written in docker host or docker container will reflected on both, and data will always be stored even if the container got deleted.
 ########################################
 # Image Management Avanced Commands: 
 
