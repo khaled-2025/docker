@@ -40,3 +40,9 @@ $ docker network connect mynet web => to connect container "web" into "mynet" ne
 $ docker network disconnect mynet web => to disconnect the container "web" from network "mynet"
 $ docker network rm mynet => to remove mynet network
 
+########################################
+# create an image from Docker file - Tag the Image: 
+
+$ docker build -t DevTest-v1.0 . => to build docker image from a Dockerfile { -t to tag the image with name DevTest-v1.0 }
+
+
