@@ -2,7 +2,7 @@ Advanced Docker Commands:
 
 # mount bind commands:
 
-# there're two types of mounting in docker (bind mount & volume)
+# There're two types of mounting in docker (bind mount & volume)
 
 1. here's how to create a bind mount: 
 
@@ -18,6 +18,7 @@ anything will be written in docker host or docker container will reflected on bo
 # Image Management Avanced Commands: 
 
 $ sudo docker ls -q => to list all docker image IDs 
+$ sudo docker rm -rf $(docker ps -aq) => to delete all running and stopped containers by a single command
 $ sudo docker rm $(docker image ls -q) => to delete all images by image ID from a single command
 $ docker run -it ngnix:latest --name webserver -h DevOps /bin/bash => to create & run & start a writeable container layer over the specified image "ngnix:latest" if exists if not will pull ngnix image, -- name flag to rename your container -h to rename the host inside the container /bin/bash to use default linux shell
 $ docker run -it --name "DevOps" centos:latest bash => to create a new docker container from centos image
