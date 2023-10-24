@@ -30,6 +30,7 @@ $ docker rmi imageID => to remove an image
 $ docker search text => search an image on the offical registry
 $ docker login => to login into a registry
 $ docker logout => to logout from a registry
+$ docker run -p hostPort:containerPort imageName => to expose port in docker container
 ########################################
 # Container Management CLIs
 
