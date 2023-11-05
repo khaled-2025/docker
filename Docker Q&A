@@ -1,30 +1,81 @@
+Scenario Based Interview Questions:
+=================================================
+1. Scenario:
 
-1. difference Between RUN & CMD & ENTRYPOINT ?
+=> You are managing a Docker cluster with several containers running. One of the containers crashes repeatedly, and you need to troubleshoot the issue. How would you approach this problem?
 
-1. RUN -> instruction allows you to install your application and packages required for it. It executes any commands on top of the current image and creates a new layer by committing the results. Often you will find multiple RUN instructions in a Dockerfile.
+Answer:
 
-- RUN Command: RUN command will basically, execute the default command, when we are building the image. It also will commit the image changes for next step.
+=> Inspect Container Logs:
 
-There can be more than 1 RUN command, to aid in process of building a new image.
+- First, inspect the logs of the crashing container using the docker logs command.
+- This provides valuable information about what might be causing the issue.
 
-2. CMD Command: will just set the default command for the new container. This will not be executed at build time.
+=> Check Resource Constraints: 
 
-If a docker file has more than 1 CMD commands then all of them are ignored except the last one. As this command will not execute anything but just set the default command.
+- Verify if the container is running out of resources, such as CPU or memory.
+- Use the "docker stats" command to monitor resource usage. If necessary, adjust resource limits in the container configuration.
 
-3. The ENTRYPOINT instruction:
+=> Review Docker Events:
 
-looks almost similar to the CMD instruction. However, the main highlighting difference between them is that it will not ignore any of the parameters that you have specified in the Docker run command (CLI parameters).
-##########################################
-2. Docker ARG Vs ENV?
+- Check Docker events using the docker events command to see if there are any unusual activities or errors related to the container.
 
-- The ARG "arguments" are only available when building the image, while ENV parameters are available to the application containers during build and when the container is running
+=> Update Container Image:
 
-- The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg <varname>=<value> flag.
+-  Ensure that the container is running the latest image version.
+-  Pull the latest image from the registry and recreate the container if necessary.
 
-- The ENV instruction sets the environment variable <key> to the value <value>.
-The environment variables set using ENV will persist when a container is run from the resulting image.
+=> Examine Configuration: 
 
-- So if you need build-time customization, ARG is your best choice.
-If you need run-time customization (to run the same image with different settings), ENV is well-suited.
-#########################################
+- Review the container's configuration, including environment variables, volume mounts, and network settings. Make sure all configurations are correct.
+
+=> Security Scanning: 
+
+- Run a security scan on the Docker image to check for known vulnerabilities. Tools like Clair or Trivy can help identify potential security issues in the image.
+
+
+=> Process Inside Container:
+
+- If necessary, access the container using "docker exec" and examine the processes running inside.
+- This can help identify specific issues within the container.
+=================================================
+2. Scenario: 
+
+=> You want to scale a Dockerized application during periods of high traffic.
+What is your approach to auto-scaling containers in a Docker swarm or Kubernetes cluster?
+
+Answer:
+
+For both Docker swarm and Kubernetes, the approach to auto-scaling is quite similar:
+
+=> Horizontal Pod Autoscaling (Kubernetes) / Service Replicas (Docker Swarm): 
+
+- Configure auto-scaling policies based on metrics like CPU usage, memory usage,
+or custom application metrics. When resource thresholds are exceeded, 
+new pods (Kubernetes) or replicas (Docker Swarm) are automatically created.
+
+=> Load Balancing:
+
+- Ensure that your application is behind a load balancer. When new containers are spun up,
+the load balancer distributes traffic to them, providing high availability and distributing load.
+
+=> Cluster Monitoring: 
+
+- Implement cluster monitoring using tools like Prometheus and Grafana (Kubernetes) or Docker Swarm's built-in monitoring.
+- Set up alerts to trigger auto-scaling when metrics breach predefined thresholds.
+
+=> Limit Resources: 
+
+- Set resource limits for containers to prevent overutilization of cluster resources and ensure that auto-scaled containers are well-behaved.
+
+=> Stateless Applications:
+
+- Ensure that your application is designed to be stateless and can handle multiple instances running simultaneously.
+- Data persistence should be managed separately (e.g. in a database or object storage).
+
+Auto-scaling allows your infrastructure to adapt to changing demand, providing a seamless and efficient experience for users.
+=================================================
+
+
+
 
